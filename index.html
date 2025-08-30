@@ -1,667 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIRUS - Content Ideas Generator</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, 
-#667eea 0%, 
-#764ba2 50%, 
-#f093fb 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 8s ease infinite;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 40px;
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 
-                0 25px 50px rgba(0,0,0,0.15),
-                0 0 0 1px rgba(255,255,255,0.3);
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            animation: containerFadeIn 1s ease-out;
-        }
-
-        @keyframes containerFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .header {
-            margin-bottom: 30px;
-        }
-
-        .logo {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .logo h1 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .virus-logo {
-            background: linear-gradient(45deg, 
-#8B5CF6, 
-#EC4899, 
-#F59E0B, 
-#EF4444);
-            background-size: 300% 300%;
-            animation: logoGradient 3s ease infinite;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-            font-size: 18px;
-            position: relative;
-        }
-
-        @keyframes logoGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .main-title {
-            background: linear-gradient(45deg, 
-#8B5CF6, 
-#EC4899, 
-#3B82F6);
-            background-size: 200% 200%;
-            animation: titleGradient 4s ease infinite;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 32px;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 40px;
-            animation: titleBounce 2s ease-out;
-        }
-
-        @keyframes titleGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes titleBounce {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            60% {
-                opacity: 1;
-                transform: translateY(5px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .how-it-works {
-            margin-bottom: 30px;
-        }
-
-        .how-it-works h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .step-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: white;
-            background: linear-gradient(45deg, 
-#8B5CF6, 
-#EC4899);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .step-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .step-icon:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
-        }
-
-        .step-icon:hover::before {
-            left: 100%;
-        }
-
-        .step-text {
-            font-size: 12px;
-            color: #666;
-            text-align: center;
-            line-height: 1.2;
-        }
-
-        .social-platforms {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .platform {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .platform::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255,255,255,0.2);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .platform:hover {
-            transform: translateY(-8px) scale(1.1);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-
-        .platform:hover::before {
-            opacity: 1;
-        }
-
-        .platform:active {
-            transform: translateY(-5px) scale(1.05);
-        }
-
-        .platform.selected {
-            transform: translateY(-5px) scale(1.08);
-            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
-            border: 2px solid rgba(255,255,255,0.8);
-        }
-
-        .platform.youtube {
-            background: 
-#FF0000;
-        }
-
-        .platform.tiktok {
-            background: 
-#000000;
-        }
-
-        .platform.instagram {
-            background: linear-gradient(45deg, 
-#F58529, 
-#DD2A7B, 
-#8134AF);
-        }
-
-        .platform.snapchat {
-            background: 
-#FFFC00;
-            color: #000;
-        }
-
-        .selected-platform {
-            background: linear-gradient(135deg, 
-#8B5CF6, 
-#EC4899, 
-#3B82F6);
-            background-size: 200% 200%;
-            animation: platformGradient 6s ease infinite;
-            border-radius: 18px;
-            padding: 25px;
-            margin-bottom: 25px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            transform: scale(0);
-            opacity: 0;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .selected-platform.show {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        @keyframes platformGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .selected-platform::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .platform-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .platform-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .platform-icon {
-            width: 30px;
-            height: 30px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        }
-
-        .platform-name {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        .options {
-            display: flex;
-            justify-content: space-between;
-            text-align: left;
-        }
-
-        .option-group h4 {
-            font-size: 14px;
-            margin-bottom: 8px;
-            opacity: 0.9;
-        }
-
-        .option {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 5px;
-            font-size: 12px;
-        }
-
-        .radio {
-            width: 12px;
-            height: 12px;
-            border: 2px solid rgba(255,255,255,0.6);
-            border-radius: 50%;
-            position: relative;
-        }
-
-        .radio.selected::after {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 6px;
-            height: 6px;
-            background: white;
-            border-radius: 50%;
-        }
-
-        .generate-btn {
-            background: linear-gradient(45deg, 
-#8B5CF6, 
-#EC4899, 
-#F59E0B);
-            background-size: 200% 200%;
-            animation: buttonGradient 3s ease infinite;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        @keyframes buttonGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .generate-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .generate-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
-        }
-
-        .generate-btn:hover::before {
-            left: 100%;
-        }
-
-        .generate-btn:active {
-            transform: translateY(-1px) scale(0.98);
-        }
-
-        .generate-btn.loading {
-            animation: buttonPulse 1.5s ease infinite;
-        }
-
-        @keyframes buttonPulse {
-            0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
-            50% { box-shadow: 0 0 0 15px rgba(139, 92, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
-        }
-
-        .idea-output {
-            background: linear-gradient(135deg, 
-#8B5CF6, 
-#EC4899, 
-#3B82F6);
-            background-size: 200% 200%;
-            animation: outputGradient 4s ease infinite;
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 20px;
-            color: white;
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: 14px;
-            line-height: 1.4;
-            transform: scale(0.8);
-            opacity: 0;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .idea-output.show {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        @keyframes outputGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .idea-output::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(5px);
-        }
-
-        .idea-output > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer {
-            font-size: 12px;
-            color: #666;
-        }
-
-        .hidden {
-            display: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIRUS - Content Ideas Generator</title>
+<style>
+/* ===== CSS ===== */
+* {margin:0;padding:0;box-sizing:border-box;}
+body {
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 50%,#f093fb 100%);
+  background-size:400% 400%; animation:gradientShift 8s ease infinite;
+  min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px;
+}
+@keyframes gradientShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+.container {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding:40px;
+  max-width:400px;
+  width:100%;
+  box-shadow:0 25px 50px rgba(0,0,0,0.15),0 0 0 1px rgba(255,255,255,0.3);
+  text-align:center;
+  border:1px solid rgba(255,255,255,0.2);
+}
+.header .logo {display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;}
+.header .logo h1 {font-size:16px; font-weight:600; color:#333;}
+.virus-logo {
+  background:linear-gradient(45deg,#8B5CF6,#EC4899,#F59E0B,#EF4444);
+  background-size:300% 300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-weight:800;
+  font-size:18px;
+}
+.main-title {
+  background:linear-gradient(45deg,#8B5CF6,#EC4899,#3B82F6);
+  background-size:200% 200%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-size:32px;
+  font-weight:700;
+  line-height:1.2;
+  margin-bottom:30px;
+}
+.social-platforms {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:15px; margin-bottom:20px;
+}
+.platform {
+  width:60px; height:60px; border-radius:15px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:all 0.3s; color:white; font-weight:bold; font-size:14px; position:relative;
+}
+.platform.youtube{background:#FF0000;}
+.platform.tiktok{background:#000000;}
+.platform.instagram{background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF);}
+.platform.snapchat{background:#FFFC00;color:#000;}
+.selected-platform {
+  background:linear-gradient(135deg,#8B5CF6,#EC4899,#3B82F6);
+  background-size:200% 200%;
+  border-radius:18px;
+  padding:25px;
+  margin-bottom:20px;
+  color:white;
+  display:none;
+}
+.option-group{margin-bottom:15px;text-align:left;}
+.option{display:flex;align-items:center;gap:8px;margin-bottom:5px;cursor:pointer;}
+.radio{width:12px;height:12px;border:2px solid rgba(255,255,255,0.6);border-radius:50%;position:relative;}
+.radio.selected::after{content:'';position:absolute;top:2px;left:2px;width:6px;height:6px;background:white;border-radius:50%;}
+.generate-btn {
+  background:linear-gradient(45deg,#8B5CF6,#EC4899,#F59E0B);
+  color:white;
+  border:none; padding:15px 30px;
+  border-radius:30px; font-size:16px; font-weight:600;
+  cursor:pointer; width:100%;
+}
+.idea-output {
+  background:linear-gradient(135deg,#8B5CF6,#EC4899,#3B82F6);
+  background-size:200% 200%;
+  border-radius:18px; padding:20px;
+  margin-top:20px; color:white;
+  min-height:80px; display:flex; align-items:center; justify-content:center;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <h1>IDEAS &<br>CHALLENGES</h1>
-                <div class="virus-logo">VIRUS</div>
-            </div>
-            <h2 class="main-title">Get ideas and challenges for your content in seconds!</h2>
-        </div>
-
-        <div class="how-it-works">
-            <h3>How it works</h3>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-icon">📱</div>
-                    <div class="step-text">1 choose<br>an app</div>
-                </div>
-                <div class="step">
-                    <div class="step-icon">✏️</div>
-                    <div class="step-text">2 fill in<br>the options</div>
-                </div>
-                <div class="step">
-                    <div class="step-icon">👆</div>
-                    <div class="step-text">3 tap on<br>the button</div>
-                </div>
-                <div class="step">
-                    <div class="step-icon">💡</div>
-                    <div class="step-text">4 get<br>your idea</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="social-platforms">
-            <div class="platform youtube" onclick="selectPlatform('youtube')">
-                ▶
-            </div>
-            <div class="platform tiktok" onclick="selectPlatform('tiktok')">
-                🎵
-            </div>
-            <div class="platform instagram" onclick="selectPlatform('instagram')">
-                📷
-            </div>
-            <div class="platform snapchat" onclick="selectPlatform('snapchat')">
-                👻
-            </div>
-        </div>
-
-        <div id="platformOptions" class="selected-platform hidden">
-            <div class="platform-content">
-                <div class="platform-header">
-                    <div class="platform-icon" id="selectedIcon">👻</div>
-                    <div class="platform-name" id="selectedName">snapchat</div>
-                </div>
-                <div class="options">
-                    <div class="option-group">
-                        <h4>Target audience:</h4>
-                        <div class="option" onclick="selectOption('audience', 'friends')">
-                            <div class="radio" id="friends"></div>
-                            <span>friends</span>
-                        </div>
-                        <div class="option" onclick="selectOption('audience', 'public')">
-                            <div class="radio" id="public"></div>
-                            <span>public</span>
-                        </div>
-                        <div class="option" onclick="selectOption('audience', 'specific')">
-                            <div class="radio" id="specific"></div>
-                            <span>specific audience</span>
-                        </div>
-                    </div>
-                    <div class="option-group">
-                        <h4>Content type:</h4>
-                        <div class="option" onclick="selectOption('content', 'story')">
-                            <div class="radio" id="story"></div>
-                            <span>story</span>
-                        </div>
-                        <div class="option" onclick="selectOption('content', 'filter')">
-                            <div class="radio" id="filter"></div>
-                            <span>filter</span>
-                        </div>
-                        <div class="option" onclick="selectOption('content', 'shorts')">
-                            <div class="radio" id="shorts"></div>
-                            <span>shorts</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <button class="generate-btn" onclick="generateIdea()">
-            ✨ Give me an idea!
-        </button>
-
-        <div id="ideaOutput" class="idea-output hidden">
-            <p>Click "Give me an idea!" to generate content suggestions!</p>
-        </div>
-
-        <div class="footer">
-            All rights reserved to the Virus team.
-        </div>
+<div class="container">
+  <div class="header">
+    <div class="logo">
+      <h1>IDEAS &<br>CHALLENGES</h1>
+      <div class="virus-logo">VIRUS</div>
     </div>
+    <h2 class="main-title">Get ideas and challenges for your content!</h2>
+  </div>
 
-    <script>
-        let selectedPlatform = 'snapchat';
-        let selectedAudience = '';
-        let selectedContent = '';
+  <div class="social-platforms">
+    <div class="platform youtube" onclick="selectPlatform('youtube')">▶</div>
+    <div class="platform tiktok" onclick="selectPlatform('tiktok')">🎵</div>
+    <div class="platform instagram" onclick="selectPlatform('instagram')">📷</div>
+    <div class="platform snapchat" onclick="selectPlatform('snapchat')">👻</div>
+  </div>
 
-        const platformData = {
-            youtube: {
-                icon: '▶',
-                name: 'youtube',
-                audiences: ['subscribers', 'general', 'niche'],
-                contentTypes: ['tutorial', 'vlog', 'review']
-            },
-            tiktok: {
-                icon: '🎵',
-                name: 'tiktok',
-                audiences: ['teens', 'general', 'niche'],
-                contentTypes: ['dance', 'comedy', 'trending']
-            },
-            instagram: {
-                icon: '📷',
-                name: 'instagram',
-                audiences: ['followers', 'explore', 'targeted'],
-                contentTypes: ['post', 'story', 'reel']
-            },
-            snapchat: {
-                icon: '👻',
-                name: 'snapchat',
-                audiences: ['friends', 'public', 'specific audience'],
-                contentTypes: ['story', 'filter', 'shorts']
-            }
-        };
+  <div id="platformOptions" class="selected-platform">
+    <div class="option-group">
+      <h4>Target audience:</h4>
+      <div class="option" onclick="selectOption('audience','first')"><div class="radio" id="aud-first"></div><span>Option 1</span></div>
+      <div class="option" onclick="selectOption('audience','second')"><div class="radio" id="aud-second"></div><span>Option 2</span></div>
+    </div>
+    <div class="option-group">
+      <h4>Content type:</h4>
+      <div class="option" onclick="selectOption('content','first')"><div class="radio" id="cont-first"></div><span>Type 1</span></div>
+      <div class="option" onclick="selectOption('content','second')"><div class="radio" id="cont-second"></div><span>Type 2</span></div>
+    </div>
+  </div>
 
-        const contentIdeas = {
-            youtube: {
-                tutorial: ['How to master a skill in 30 days', '5-minute life hacks that actually work', 'Step-by-step guide to your favorite hobby'],
-                vlog: ['Day in my life during a challenge', 'Trying weird food combinations', 'Exploring hidden gems in your city'],
-                review: ['Testing viral products', 'Rating popular trends', 'Honest review of overhyped items']
-            },
-            tiktok: {
-                dance: ['Learn this trending dance in 60 seconds', 'Dance battle with friends', 'Creating your own signature move'],
-                comedy: ['Relatable moments we all experience', 'Funny scenarios with pets', 'Awkward situations turned hilarious'],
-                trending: ['Put your spin on the latest trend', 'Trend prediction challenge', 'Before and after transformation']
-            },
-            instagram: {
-                post: ['Aesthetic flat lay of your essentials', 'Behind the scenes of your creative process', 'Motivational quote with personal story'],
-                story: ['This or that polls with followers', 'Quick tutorial in story format', 'Day highlights with fun stickers'],
-                reel: ['15-second transformation', 'Quick recipe or DIY', 'Trending audio with your twist']
-            },
-            snapchat: {
-                story: ['24-hour challenge documentation', 'Funny moments with friends', 'Creative use of snap filters'],
-                filter: ['Create your ow
+  <button class="generate-btn" onclick="generateIdea()">✨ Give me an idea!</button>
+  <div id="ideaOutput" class="idea-output">Click the button to generate ideas!</div>
+</div>
+
+<script>
+let selectedPlatform='snapchat';
+let selectedAudience='';
+let selectedContent='';
+
+function selectPlatform(platform){
+  selectedPlatform=platform;
+  document.getElementById('platformOptions').style.display='block';
+}
+function selectOption(type,value){
+  if(type==='audience') selectedAudience=value;
+  else selectedContent=value;
+  // deselect radios
+  document.querySelectorAll('.radio').forEach(r=>r.classList.remove('selected'));
+  if(type==='audience') document.getElementById('aud-'+(value==='first'?'first':'second')).classList.add('selected');
+  else document.getElementById('cont-'+(value==='first'?'first':'second')).classList.add('selected');
+}
+function generateIdea(){
+  let idea="Idea for "+selectedPlatform+" with "+selectedAudience+" audience and "+selectedContent+" content!";
+  document.getElementById('ideaOutput').innerText=idea;
+}
+</script>
+
+</body>
+</html>
